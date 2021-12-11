@@ -28,7 +28,7 @@ public class RequestController {
     @GetMapping("{name}")
     @ApiOperation(value = "Получение get-запроса",
             notes = "Получение данных get-запроса")
-    public ResponseEntity<String> getRequest(@ApiParam("Имя пользователя") @PathVariable String name) {
+    public ResponseEntity<String> getRequest(@ApiParam("Имя пользователя приложения") @PathVariable String name) {
         return ResponseEntity.ok(String.format("Hello %s", name));
     }
 
