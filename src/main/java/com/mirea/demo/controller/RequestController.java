@@ -5,12 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import com.mirea.demo.modeles.PatchModel;
 
 @RestController
 @RequestMapping("api/demo")
@@ -32,4 +28,17 @@ public class RequestController {
         return ResponseEntity.ok(String.format("Hello %s", name));
     }
 
+    @PatchMapping
+    @ApiOperation(value = "Изменение patch-запрос",
+            notes = "Получение данных get-запроса")
+    public ResponseEntity<String> patchRequest(@ApiParam("Модель patch") @RequestBody PatchModel patchModel) {
+        return ResponseEntity.ok(String.format("Patched %s", patchModel.toString()));
+    }
+
+    @DeleteMapping("{id}")
+    @ApiOperation(value = "Изменение patch-запрос",
+            notes = "Получение данных get-запроса")
+    public ResponseEntity<String> deleteRequest(@ApiParam("id таблицы") @PathVariable int id) {
+        return ResponseEntity.ok(String.format("Deleted %s", id));
+    }
 }
